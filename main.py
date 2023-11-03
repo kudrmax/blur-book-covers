@@ -1,28 +1,16 @@
-import sys
 from PIL import Image, ImageFilter
 
-input_image = Image.open('input.jpeg')
-blur_image = input_image.filter(ImageFilter.GaussianBlur(5))
+in_image = Image.open('input.jpeg')  # исходная картинка
+blur_image = in_image.filter(ImageFilter.GaussianBlur(5))  # блюрим картинку
 
-# blur_image.save('output.jpg')
+in_width, in_height = in_image.size  # размеры исходной картинки
+out_height, out_width = in_height, int(16 * in_height / 9)  # размеры того, что должно у нас получится на выходе
 
-# images = [Image.open(x) for x in ['input.jpeg', 'output.jpg']]
-input_width, input_height = list(input_image.size)
+multiplier = out_width / in_width  # коэфициент растяжения заблюренной картинки до итоговой картинки
+new_size = (int(blur_image.size[0] * multiplier), int(blur_image.size[1] * multiplier))  # растягиваем
 
-output_height = int(input_height)
-output_width = int(16 * output_height / 9)
+out_image = Image.new('RGB', (out_width, out_height))  # пустое итоговое изображение
+out_image.paste(blur_image.resize(new_size), (0, -500))  # вставляем заблюренную картинку в итоговую
+out_image.paste(in_image, (int(out_width / 2 - in_width / 2), 0))  # вставляем оригинальную картинку в итоговую
 
-output_image = Image.new('RGB', (output_width, output_height))
-
-multiplier = output_width / input_width
-new_size = (int(blur_image.size[0] * multiplier), int(blur_image.size[1] * multiplier))
-output_image.paste(blur_image.resize(new_size), (0, -500))
-# output_image.paste(blur_image_resized, (int(output_width / 2), 0))
-output_image.paste(input_image, (int(output_width / 2 - input_width / 2), 0))
-
-# x_offset = 0
-# for im in images:
-#     new_im.paste(im, (300, 0))
-#     x_offset += im.size[0]
-
-output_image.save('merged.jpg')
+out_image.save('merged.jpg') # сохраняем итоговое изображение
