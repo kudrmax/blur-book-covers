@@ -9,7 +9,7 @@
 - `input_image_directory`
 - `output_image_directory`
 
-в файле `blur_cover.py`
+в начале файла `blur_cover.py`
 
 # Пример
 
