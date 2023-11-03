@@ -6,7 +6,8 @@
 
 Поменять значение переменных 
 - `blur_ratio`,
-- `input_image_directory`
+- `out_proportions`,
+- `input_image_directory`,
 - `output_image_directory`
 
 в начале файла `blur_cover.py`
