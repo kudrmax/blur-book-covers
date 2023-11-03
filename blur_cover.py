@@ -4,7 +4,7 @@ from pathlib import Path
 
 ##### ИЗМЕНЯТЬ ЭТО #####
 blur_ratio = 20  # коэффициент размытия
-out_proportions = 16, 9 # пропорции итогового изображение
+output_image_proportions = 16, 9 # пропорции итогового изображение
 input_image_directory = './images/'  # путь к папке с исходными изображениями
 output_image_directory = './images/output/'  # путь к папке с заблюренными изображениями (должен отличаться от input_image_directory!)
 

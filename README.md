@@ -6,7 +6,7 @@
 
 Поменять значение переменных 
 - `blur_ratio`,
-- `out_proportions`,
+- `output_image_proportions`,
 - `input_image_directory`,
 - `output_image_directory`
 
