@@ -4,6 +4,7 @@ from pathlib import Path
 
 ##### ИЗМЕНЯТЬ ЭТО #####
 blur_ratio = 20  # коэффициент размытия
+out_proportions = 16, 9 # пропорции итогового изображение
 input_image_directory = './images/'  # путь к папке с исходными изображениями
 output_image_directory = './images/output/'  # путь к папке с заблюренными изображениями (должен отличаться от input_image_directory!)
 
@@ -14,7 +15,7 @@ for extension in ['jpg', 'jpeg', 'png']:
         blured_image = in_image.filter(ImageFilter.GaussianBlur(blur_ratio))  # блюрим картинку
 
         in_width, in_height = in_image.size  # размеры исходной картинки
-        out_height, out_width = in_height, int(16 * in_height / 9)  # размеры того, что должно у нас получится на выходе
+        out_height, out_width = in_height, int(out_proportions[0] * in_height / out_proportions[1])  # размеры того, что должно у нас получится на выходе
 
         multiplier = out_width / in_width  # коэфициент растяжения заблюренной картинки до итоговой картинки
         new_size = (int(blured_image.size[0] * multiplier), int(blured_image.size[1] * multiplier))  # растягиваем
