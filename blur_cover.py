@@ -15,7 +15,7 @@ for extension in ['jpg', 'jpeg', 'png']:
         blured_image = in_image.filter(ImageFilter.GaussianBlur(blur_ratio))  # блюрим картинку
 
         in_width, in_height = in_image.size  # размеры исходной картинки
-        out_height, out_width = in_height, int(out_proportions[0] * in_height / out_proportions[1])  # размеры того, что должно у нас получится на выходе
+        out_height, out_width = in_height, int(output_image_proportions[0] * in_height / output_image_proportions[1])  # размеры того, что должно у нас получится на выходе
 
         multiplier = out_width / in_width  # коэфициент растяжения заблюренной картинки до итоговой картинки
         new_size = (int(blured_image.size[0] * multiplier), int(blured_image.size[1] * multiplier))  # растягиваем
