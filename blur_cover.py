@@ -2,7 +2,7 @@ from PIL import Image, ImageFilter
 import glob
 from pathlib import Path
 
-##### МЕНЯТЬ ЭТО #####
+##### ИЗМЕНЯТЬ ЭТО #####
 blur_ratio = 20  # коэффициент размытия
 input_image_directory = './images/'  # путь к папке с исходными изображениями
 output_image_directory = './images/output/'  # путь к папке с заблюренными изображениями (должен отличаться от input_image_directory!)
