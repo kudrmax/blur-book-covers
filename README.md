@@ -10,3 +10,10 @@
 - `output_image_directory`
 
 в файле `blur_cover.py`
+
+# Пример
+
+| Input                                            | Output                                       |
+|--------------------------------------------------|----------------------------------------------|
+| ![](images/example_file_1.jpeg) | ![](images/output/example_file_1_blured.jpg) |
+| ![](images/example_file_2.png)                   | ![](images/output/example_file_2_blured.jpg) |
