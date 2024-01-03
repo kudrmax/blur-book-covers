@@ -1,11 +1,12 @@
 from PIL import Image, ImageFilter
 import glob
 from pathlib import Path
+import pathlib
 
 ##### ИЗМЕНЯТЬ ЭТО #####
 blur_ratio = 20  # коэффициент размытия
 output_image_proportions = 16, 9 # пропорции итогового изображение
-input_image_directory = './images/'  # путь к существующей (!) папке с исходными изображениями
+input_image_directory = './images/input/'  # путь к существующей (!) папке с исходными изображениями
 output_image_directory = './images/output/'  # путь к существующей (!) папке с заблюренными изображениями, который отличается от input_image_directory (!)
 
 ##### АЛГОРИТМ #####
@@ -25,4 +26,6 @@ for extension in ['jpg', 'jpeg', 'png']:
         out_image.paste(blured_image, (0, int(- blured_image.size[0] / 2)))  # вставляем заблюренную картинку в итоговую
         out_image.paste(in_image, (int(out_width / 2 - in_width / 2), 0))  # вставляем оригинальную картинку в итоговую
 
-        out_image.save(output_image_directory + Path(in_name).stem + '_blured.jpg')  # сохраняем итоговое изображение
+        out_image.save(output_image_directory + Path(in_name).stem + '.jpg')  # сохраняем итоговое изображение
+
+        # pathlib.Path.unlink(Path(in_name)) # удаляем изначальное изображение
