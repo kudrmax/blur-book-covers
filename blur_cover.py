@@ -2,6 +2,7 @@ from PIL import Image, ImageFilter
 import glob
 from pathlib import Path
 import pathlib
+import pyperclip
 
 ##### ИЗМЕНЯТЬ ЭТО #####
 blur_ratio = 20  # коэффициент размытия
@@ -27,5 +28,7 @@ for extension in ['jpg', 'jpeg', 'png']:
         out_image.paste(in_image, (int(out_width / 2 - in_width / 2), 0))  # вставляем оригинальную картинку в итоговую
 
         out_image.save(output_image_directory + Path(in_name).stem + '.jpg')  # сохраняем итоговое изображение
+
+        pyperclip.copy('[[' + Path(in_name).stem + '.jpg' + ']]')
 
         # pathlib.Path.unlink(Path(in_name)) # удаляем изначальное изображение
