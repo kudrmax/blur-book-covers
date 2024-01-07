@@ -6,9 +6,10 @@ import pyperclip
 
 ##### ИЗМЕНЯТЬ ЭТО #####
 blur_ratio = 20  # коэффициент размытия
-output_image_proportions = 16, 9 # пропорции итогового изображение
+output_image_proportions = 16, 9  # пропорции итогового изображение
 input_image_directory = './images/input/'  # путь к существующей (!) папке с исходными изображениями
 output_image_directory = './images/output/'  # путь к существующей (!) папке с заблюренными изображениями, который отличается от input_image_directory (!)
+archive_image_directory = './images/archive/'  # путь к существующей (!) папке, в которую будут отправляться НЕ заблюренные изображение, которые уже заблюрили
 
 ##### АЛГОРИТМ #####
 for extension in ['jpg', 'jpeg', 'png']:
@@ -28,7 +29,7 @@ for extension in ['jpg', 'jpeg', 'png']:
         out_image.paste(in_image, (int(out_width / 2 - in_width / 2), 0))  # вставляем оригинальную картинку в итоговую
 
         out_image.save(output_image_directory + Path(in_name).stem + '.jpg')  # сохраняем итоговое изображение
+        pyperclip.copy('[[' + Path(in_name).stem + '.jpg' + ']]')  # копирование названия файла (полезно для будушей вставки в Obsidian)
 
-        pyperclip.copy('[[' + Path(in_name).stem + '.jpg' + ']]')
-
-        # pathlib.Path.unlink(Path(in_name)) # удаляем изначальное изображение
+        in_image.save(archive_image_directory + Path(in_name).stem + "." + extension)  # копируем изначальное изображение в архив
+        pathlib.Path.unlink(Path(in_name))  # удаляем изначальное изображение
